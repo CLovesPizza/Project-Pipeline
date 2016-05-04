@@ -6,8 +6,6 @@ float flowRate;
 unsigned int flowMilliLitres;
 unsigned long totalMilliLitres;
 unsigned long oldTime;
-unsigned long Gallons;
-long conversionFactor = 0.000264172;
 
 void setup()
 {
@@ -21,7 +19,7 @@ void setup()
     pulseCount        = 0;
     flowRate          = 0.0;
     flowMilliLitres   = 0;
-    totalMilliLitres  = 0;
+    totalMilliLitres  = 0;Time
     oldTime           = 0;
     attachInterrupt(sensorInterrupt, pulseCounter, FALLING);
 }
@@ -29,8 +27,6 @@ void setup()
 void loop()
 {
   
-  Gallons = totalMilliLitres * conversionFactor;
-   
      if((millis() - oldTime) > 1000)  
     { 
       detachInterrupt(sensorInterrupt);
@@ -43,21 +39,21 @@ void loop()
       attachInterrupt(sensorInterrupt, pulseCounter, FALLING);
     }
     
-    if(Gallons > 1)
+    if(totalMilliLitres > 946.3525)
     {
       digitalWrite(8, HIGH);
       digitalWrite(9, LOW);
       digitalWrite(10, LOW);
     }
     
-    if(Gallons > 2)
+    if(totalMilliLitres > 946.3525)
     {
       digitalWrite(9, HIGH);
       digitalWrite(8, LOW);
       digitalWrite(10, LOW);
     }
     
-    if(Gallons > 3)
+    if(totalMilliLitres > 946.3525)
     {
       digitalWrite(10, HIGH);
       digitalWrite(9, LOW);
@@ -69,3 +65,5 @@ void pulseCounter()
 {
   pulseCount++;
 }
+//Caleb Hanneman 2016
+//Project Pipeline is licensed under a Creative Commons Attribution-NoDerivatives 4.0 International License.
